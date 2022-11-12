@@ -66,10 +66,30 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         if (v == registerLyt){
             registerNewUser();
-            //startActivity(new Intent(SignUpActivity.this, InputActivity2.class));
-            //finish();
         }
     }
+
+    /*private boolean isEmpty(EditText txt){
+        CharSequence str = txt.getText().toString();
+        return TextUtils.isEmpty(str);
+    }
+
+    private void verifyAccount(){
+        if(isEmpty(firstEdt)){
+            Toast toast = Toast.makeText(this, "Must enter first name", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        if(isEmpty(lastEdt)){
+            Toast toast = Toast.makeText(this, "Must enter last name", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+
+        if(isEmpty(phoneEdt)){
+            Toast toast = Toast.makeText(this, "Must enter phone number", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }*/
 
     private void registerNewUser() {
         String email, password;

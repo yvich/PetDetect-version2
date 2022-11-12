@@ -1,18 +1,32 @@
 package com.example.door;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
 
     TextView signupTxt;
     RelativeLayout signinLyt;
+
+    protected EditText emailEdt;
+    protected EditText passEdt;
+
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         signinLyt = findViewById(R.id.signinLyt);
         signinLyt.setOnClickListener(this);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        emailEdt = findViewById(R.id.emailEdt);
+        passEdt = findViewById(R.id.passEdt);
     }
 
     @Override
@@ -39,10 +58,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if (v == signinLyt){
-
-            startActivity(new Intent(MainActivity.this, DoorAdapter.class));
-            //change DoorAdapter to Home
-            finish();
+            loginUserAccount();
         }
     }
+
+    private void loginUserAccount() {
+        String email, password;
+        email = emailEdt.getText().toString();
+        password = passEdt.getText().toString();
+
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(getApplicationContext(), "Please enter email", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this, Home.class);
+                    startActivity(intent);
+                }
+
+                else {
+                    Toast.makeText(getApplicationContext(), "Login failed! Please try again", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
 }
