@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "654444038843",
+    "firebase_url": "https://petdetect---coen-390-default-rtdb.firebaseio.com",
+    "project_id": "petdetect---coen-390",
+    "storage_bucket": "petdetect---coen-390.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654444038843:android:c4eab146544cceb342f79e",
+        "android_client_info": {
+          "package_name": "com.example.door"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654444038843-529t3v4vqli0jo7ipi1mkb23pg9oto5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxH8GItOestsmUoosCMv-C19uvfXkrIWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "654444038843-529t3v4vqli0jo7ipi1mkb23pg9oto5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654444038843:android:b86a77f7db0fa80b42f79e",
+        "android_client_info": {
+          "package_name": "com.example.petdetect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654444038843-529t3v4vqli0jo7ipi1mkb23pg9oto5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxH8GItOestsmUoosCMv-C19uvfXkrIWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "654444038843-529t3v4vqli0jo7ipi1mkb23pg9oto5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654444038843:android:cdd8d64e7407a20442f79e",
+        "android_client_info": {
+          "package_name": "com.login.registration"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654444038843-529t3v4vqli0jo7ipi1mkb23pg9oto5p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxH8GItOestsmUoosCMv-C19uvfXkrIWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "654444038843-529t3v4vqli0jo7ipi1mkb23pg9oto5p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
