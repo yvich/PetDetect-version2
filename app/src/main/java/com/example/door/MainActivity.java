@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (v == signinLyt){
 
-            startActivity(new Intent(MainActivity.this, Home.class));
+            startActivity(new Intent(MainActivity.this, DoorAdapter.class));
+            //change DoorAdapter to Home
             finish();
         }
     }

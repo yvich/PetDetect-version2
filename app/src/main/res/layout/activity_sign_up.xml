@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -74,6 +78,7 @@
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLines="1"
                         android:id="@+id/emailEdt"
                         android:textStyle="normal"
                         android:textSize="20dp"
@@ -115,6 +120,7 @@
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLines="1"
                         android:id="@+id/passEdt"
                         android:textStyle="normal"
                         android:textSize="20dp"
@@ -156,6 +162,7 @@
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLines="1"
                         android:id="@+id/firstEdt"
                         android:textStyle="normal"
                         android:textSize="15dp"
@@ -197,6 +204,7 @@
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLines="1"
                         android:id="@+id/lastEdt"
                         android:textStyle="normal"
                         android:textSize="15dp"
@@ -228,20 +236,23 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:textColorHint="@color/black"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:background="@null"
-                        android:layout_marginTop="13dp"
-                        android:layout_marginBottom="13dp"
-                        android:gravity="center_vertical"
-                        android:textColor="@color/black"
+                        android:id="@+id/phoneEdt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/phoneEdt"
-                        android:textStyle="normal"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginBottom="13dp"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="Phone Number"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
                         android:textSize="15dp"
-                        android:hint="Phone Number"></EditText>
+                        android:textStyle="normal"></EditText>
 
                 </RelativeLayout>
 
@@ -273,3 +284,4 @@
     </RelativeLayout>
 
 </LinearLayout>
+</ScrollView>

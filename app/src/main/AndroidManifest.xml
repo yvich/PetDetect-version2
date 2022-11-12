@@ -7,7 +7,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/logo"
-        android:label="MyDoor"
+        android:label="PetDetect"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
@@ -35,13 +35,6 @@
         </activity>
         <activity
             android:name=".InputActivity2"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".InputActovity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
