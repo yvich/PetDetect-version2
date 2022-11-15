@@ -2,7 +2,6 @@ package com.example.door;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView signupTxt;
     RelativeLayout signinLyt;
+    TextView forgotPasswordTxt;
 
     protected EditText emailEdt;
     protected EditText passEdt;
@@ -38,6 +38,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         signupTxt = findViewById(R.id.signupTxt);
         signupTxt.setOnClickListener(this);
+
+
+        forgotPasswordTxt = findViewById(R.id.forgotPasswordTxt);
+        forgotPasswordTxt.setOnClickListener(this);
 
         signinLyt = findViewById(R.id.signinLyt);
         signinLyt.setOnClickListener(this);
@@ -59,6 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (v == signinLyt){
             loginUserAccount();
+        }
+
+        if (v == forgotPasswordTxt){
+            Intent intent = new Intent(MainActivity.this, forgotPass.class);
+            startActivity(intent);
         }
     }
 
