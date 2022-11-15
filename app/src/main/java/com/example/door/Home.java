@@ -30,8 +30,8 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
         alertImg = findViewById(R.id.alertImg);
         alertImg.setOnClickListener(this);
 
-        String[] flowerName = {"Rose","Lotus","Lily","Jasmine",
-                "Tulip","Orchid","Levender"};
+        String[] flowerName = {"Rose","Lotus","Lily","Jasmine", "Tulip","Orchid","Lavender"};
+
         int[] flowerImages = {R.drawable.dooricon,
                 R.drawable.dooricon,
                 R.drawable.dooricon,
