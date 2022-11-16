@@ -80,7 +80,7 @@ public class forgotPass extends AppCompatActivity {
                     finish();
                 }
                 else {
-                    Toast.makeText(getApplicationContext(),"Error, please try again.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Invalid email or email is not linked to an account, please try again.",Toast.LENGTH_LONG).show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

@@ -69,40 +69,21 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    /*private boolean isEmpty(EditText txt){
-        CharSequence str = txt.getText().toString();
-        return TextUtils.isEmpty(str);
-    }
-
-    private void verifyAccount(){
-        if(isEmpty(firstEdt)){
-            Toast toast = Toast.makeText(this, "Must enter first name", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-        if(isEmpty(lastEdt)){
-            Toast toast = Toast.makeText(this, "Must enter last name", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-
-        if(isEmpty(phoneEdt)){
-            Toast toast = Toast.makeText(this, "Must enter phone number", Toast.LENGTH_SHORT);
-            toast.show();
-        }
-    }*/
-
     private void registerNewUser() {
-        String email, password;
+        String email, password, firstName, lastName, phoneNum;
         email = emailEdt.getText().toString();
         password = passEdt.getText().toString();
+        firstName = firstEdt.getText().toString();
+        lastName = lastEdt.getText().toString();
+        phoneNum = phoneEdt.getText().toString();
 
-        if (TextUtils.isEmpty(email)) {
-            Toast.makeText(getApplicationContext(), "Please enter email", Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(email) | TextUtils.isEmpty(firstName) | TextUtils.isEmpty(password) | TextUtils.isEmpty(lastName) | TextUtils.isEmpty(phoneNum)) {
+            Toast.makeText(getApplicationContext(), "Please fill in all the fields", Toast.LENGTH_LONG).show();
             return;
         }
 
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_LONG).show();
+        if (phoneNum.length() < 10) {
+            Toast.makeText(getApplicationContext(), "Please enter a valid phone number", Toast.LENGTH_LONG).show();
             return;
         }
 
