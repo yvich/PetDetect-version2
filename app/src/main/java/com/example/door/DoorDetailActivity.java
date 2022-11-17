@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,9 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
 
     TextView backTxt;
     protected TextView imagetimeTxt;
+    RelativeLayout updateLyt;
+    RelativeLayout deleteLyt;
+    RelativeLayout DownloadLyt;
 
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -37,6 +41,15 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
         backTxt = findViewById(R.id.backTxt);
         backTxt.setOnClickListener(this);
         imagetimeTxt = findViewById(R.id.imagetimeTxt);
+
+        updateLyt = findViewById(R.id.updateLyt);
+        updateLyt.setOnClickListener(this);
+
+        deleteLyt = findViewById(R.id.deleteLyt);
+        deleteLyt.setOnClickListener(this);
+
+        DownloadLyt = findViewById(R.id.DownloadLyt);
+        DownloadLyt.setOnClickListener(this);
 
         database = FirebaseDatabase.getInstance();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -66,6 +79,18 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
 
             startActivity(new Intent(DoorDetailActivity.this, Home.class));
             finish();
+        }
+
+        if (v == deleteLyt){
+            Toast.makeText(getApplicationContext(), "Door deleted", Toast.LENGTH_LONG).show();
+        }
+
+        if (v == updateLyt){
+            Toast.makeText(getApplicationContext(), "Door updated", Toast.LENGTH_LONG).show();
+        }
+
+        if (v == DownloadLyt){
+            Toast.makeText(getApplicationContext(), "Image downloaded", Toast.LENGTH_LONG).show();
         }
 
     }
