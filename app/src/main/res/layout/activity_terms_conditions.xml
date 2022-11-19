@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/maincolor">
+
+    <RelativeLayout
+        android:id="@+id/relativeTerms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/termsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Terms and Conditions"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="19sp"/>
+
+
+        <TextView
+            android:id="@+id/para1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_below="@id/termsTitle"
+            android:text="@string/para1"
+            android:textColor="@color/white"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/article1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/para1"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="10dp"
+            android:text="Changes to This Terms and Conditions :"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/para2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_below="@id/article1"
+            android:text="@string/para2"
+            android:textColor="@color/white"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/article2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/para2"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="10dp"
+            android:text="Contact Us : "
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/para3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_below="@id/article2"
+            android:text="@string/para3"
+            android:textColor="@color/white"
+            android:textSize="15sp"/>
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="36dp"
+            android:layout_below="@id/para3"
+            android:text="Terms and Conditions"
+            android:textColor="@color/white"
+            android:buttonTint="@color/white"
+            />
+
+        <RelativeLayout
+            android:id="@+id/signinLyt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:layout_below="@id/checkBox"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/button_background2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
+                android:text="Next"
+                android:textColor="@color/black"
+                android:textSize="20dp">
+
+            </TextView>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>
