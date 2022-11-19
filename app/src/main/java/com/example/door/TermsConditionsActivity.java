@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class TermsConditionsActivity extends AppCompatActivity {
 
-    CheckBox cb;
+    CheckBox cb; //checkbox
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,13 +20,14 @@ public class TermsConditionsActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-
+        // hook for checkbox
         cb = findViewById(R.id.checkBox);
-
+        //onclick listener
         findViewById(R.id.signinLyt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(cb.isChecked()){
+                    //switch from termsconditionsactivity to mainactivity
                     startActivity(new Intent(TermsConditionsActivity.this,MainActivity.class));
                 }else{
                     cb.setError("Please check this checkbox to approve terms ");
