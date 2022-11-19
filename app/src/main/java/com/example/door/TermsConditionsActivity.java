@@ -29,8 +29,8 @@ public class TermsConditionsActivity extends AppCompatActivity {
                 if(cb.isChecked()){
                     startActivity(new Intent(TermsConditionsActivity.this,MainActivity.class));
                 }else{
-                    cb.setError("Please check this");
-                    Toast.makeText(TermsConditionsActivity.this, "Please check the below box", Toast.LENGTH_SHORT).show();
+                    cb.setError("Please check this checkbox to approve terms ");
+                    Toast.makeText(TermsConditionsActivity.this, "Please check the below box for approval", Toast.LENGTH_SHORT).show();
                 }
             }
         });
