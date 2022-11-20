@@ -2,10 +2,16 @@ package com.example.door;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 public class DoorDetailActivity extends AppCompatActivity implements View.OnClickListener{
 
     TextView backTxt;
@@ -25,6 +34,7 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
     RelativeLayout updateLyt;
     RelativeLayout deleteLyt;
     RelativeLayout DownloadLyt;
+    ImageView doorImg;
 
     FirebaseDatabase database;
     DatabaseReference reference;
@@ -51,11 +61,17 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
         DownloadLyt = findViewById(R.id.DownloadLyt);
         DownloadLyt.setOnClickListener(this);
 
+        doorImg = findViewById(R.id.doorImg);
+
         database = FirebaseDatabase.getInstance();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         reference = database.getReference("UsersData").child(uid).child("a");
 
         data();
+
+        ActivityCompat.requestPermissions(DoorDetailActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+        ActivityCompat.requestPermissions(DoorDetailActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
+
     }
 
     private void data() {
@@ -90,6 +106,32 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
         }
 
         if (v == DownloadLyt){
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) doorImg.getDrawable();
+            Bitmap bitmap = bitmapDrawable.getBitmap();
+
+            FileOutputStream outputStream = null;
+            File file = Environment.getExternalStorageDirectory();
+            File dir = new File(file.getAbsolutePath() + "/MyPictures");
+            dir.mkdirs();
+
+            String fileName = String.format("%d.png", System.currentTimeMillis());
+            File outFile = new File(dir,fileName);
+            try{
+                outputStream = new FileOutputStream(outFile);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            bitmap.compress(Bitmap.CompressFormat.PNG,100,outputStream);
+            try{
+                outputStream.flush();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            try{
+                outputStream.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
             Toast.makeText(getApplicationContext(), "Image downloaded", Toast.LENGTH_LONG).show();
         }
 
