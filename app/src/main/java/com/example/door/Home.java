@@ -2,6 +2,7 @@ package com.example.door;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,10 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
     GridView doorlist;
     ImageView alertImg, doorImg;
     ArrayList birdList=new ArrayList<>();
+    String st;
+    Context context;
+    String [] flowerName={ };
+    int [] flowerImages={ };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +33,30 @@ public class Home extends AppCompatActivity implements View.OnClickListener{
 
         doorlist = (GridView) findViewById(R.id.doorgridView);
         alertImg = findViewById(R.id.alertImg);
+        doorImg = findViewById(R.id.doorImg);
         alertImg.setOnClickListener(this);
 
-        String[] flowerName = {"Rose","Lotus","Lily","Jasmine", "Tulip","Orchid","Lavender"};
+        st = getIntent().getExtras().getString("Value");
 
-        int[] flowerImages = {R.drawable.dooricon,
-                R.drawable.dooricon,
-                R.drawable.dooricon,
-                R.drawable.dooricon,
-                R.drawable.dooricon,
-                R.drawable.dooricon,
-                R.drawable.dooricon,};
+        SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(context.getApplicationContext());
+        String door = sharedPreferencesHelper.getDoor();
+        int numDoors = Integer.parseInt(door);
 
-        DoorAdapter gridAdapter = new DoorAdapter(Home.this,flowerName,flowerImages);
-        doorlist.setAdapter(gridAdapter);
+        StringBuffer stringBuffer = new StringBuffer(String.valueOf(flowerName));
 
+        if(flowerImages.length==numDoors){
+            DoorAdapter gridAdapter = new DoorAdapter(Home.this,flowerName,flowerImages);
+            doorlist.setAdapter(gridAdapter);
+        }
+        else{
+            int n = numDoors-flowerImages.length;
+            for(int i=0; i<n;i++){
+                int flowerImages = R.drawable.dooricon;
+                stringBuffer.append(" new door");
+                DoorAdapter gridAdapter = new DoorAdapter(Home.this,flowerName, new int[]{flowerImages});
+                doorlist.setAdapter(gridAdapter);
+            }
+        }
 
         doorlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

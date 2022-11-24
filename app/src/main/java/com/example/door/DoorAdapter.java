@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,16 +19,20 @@ public class DoorAdapter extends BaseAdapter {
     int[] image;
 
     LayoutInflater inflater;
+    SharedPreferencesHelper sharedPreferencesHelper = new SharedPreferencesHelper(context.getApplicationContext());
+    String door = sharedPreferencesHelper.getDoor();
+    int numDoors = Integer.parseInt(door);
 
     public DoorAdapter(Context context, String[] flowerName, int[] image) {
         this.context = context;
         this.flowerName = flowerName;
         this.image = image;
+        inflater = (LayoutInflater.from(context.getApplicationContext())) ;
     }
 
     @Override
     public int getCount() {
-        return flowerName.length;
+        return numDoors;
     }
 
     @Override
