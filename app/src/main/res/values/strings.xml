@@ -30,5 +30,6 @@ These terms and conditions are effective as of 2022-11-13 </string>
 
     <string name="para3">If you have any questions or suggestions about our Terms and Conditions, do not hesitate to contact us at petdetect390@gmail.com.</string>
 
-
+    <string name="Door_SharedPreferences">DoorSharedPref</string>
+    <string name="Door_SharedPreferences_Name_Key">door_name_key</string>
 </resources>
