@@ -3,9 +3,14 @@ package com.example.door;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -72,13 +77,18 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
         ActivityCompat.requestPermissions(DoorDetailActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
         ActivityCompat.requestPermissions(DoorDetailActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
 
+
     }
 
     private void data() {
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 imagetimeTxt.setText(snapshot.getValue(String.class));
+
+                if(snapshot.getValue(String.class) == "Motion detected") {
+                    newNotification();
+                }
             }
 
             @Override
@@ -86,6 +96,20 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
                 imagetimeTxt.setText("No data is read");
             }
         });
+    }
+
+    private void newNotification() {
+        Intent intent = new Intent(this, DoorDetailActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(DoorDetailActivity.this, 0, intent, 0);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        Notification.Builder notification = new Notification.Builder(DoorDetailActivity.this)
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle("My notification")
+                .setContentText("Pet has been detected")
+                .setPriority(Notification.PRIORITY_DEFAULT);
+        NotificationManagerCompat compat = NotificationManagerCompat.from(DoorDetailActivity.this);
+        compat.notify(1, notification.build());
     }
 
     @Override

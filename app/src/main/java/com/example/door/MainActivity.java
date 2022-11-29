@@ -3,7 +3,9 @@ package com.example.door;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -27,6 +29,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected EditText passEdt;
 
     private FirebaseAuth mAuth;
+
+    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.Door_SharedPreferences), Context.MODE_PRIVATE);
+    String door = sharedPreferences.getString(getString(R.string.Door_SharedPreferences_Name_Key),null);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         emailEdt = findViewById(R.id.emailEdt);
         passEdt = findViewById(R.id.passEdt);
+
     }
 
     @Override
@@ -91,6 +98,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
+
+                    if(door==" "){
+                        Intent intent = new Intent(MainActivity.this, InputActivity2.class);
+                        startActivity(intent);
+                    }
+
                     Intent intent = new Intent(MainActivity.this, Home.class);
                     startActivity(intent);
                 }
