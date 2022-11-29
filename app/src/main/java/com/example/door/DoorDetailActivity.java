@@ -75,7 +75,7 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void data() {
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 imagetimeTxt.setText(snapshot.getValue(String.class));
