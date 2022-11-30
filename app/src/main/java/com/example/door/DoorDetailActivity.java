@@ -42,6 +42,7 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
     FirebaseDatabase database;
     DatabaseReference reference;
     String uid;
+    String move = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,10 +76,8 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 imagetimeTxt.setText(snapshot.getValue(String.class));
-
-                //if(snapshot.getValue(String.class) == "Motion detected") {
-                //    Notification();
-                //}
+                move = snapshot.getValue(String.class);
+                Notification();
             }
 
             @Override
@@ -96,7 +95,7 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "notification")
                 .setSmallIcon(R.drawable.logo)
                 .setContentTitle("Something was detected")
-                .setContentText("Your pet has been detected")
+                .setContentText(move)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 // Set the intent that will fire when the user taps the notification
                 .setContentIntent(pendingIntent)
@@ -129,7 +128,7 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
             Toast.makeText(getApplicationContext(), "Door deleted", Toast.LENGTH_LONG).show();
         }
         if (v == updateLyt){
-            Notification();
+            //Notification();
             Toast.makeText(getApplicationContext(), "Door updated", Toast.LENGTH_LONG).show();
         }
         if (v == DownloadLyt){
