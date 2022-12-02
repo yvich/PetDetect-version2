@@ -82,6 +82,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
+        if (password.length() < 6) {
+            Toast.makeText(getApplicationContext(), "Please enter a password with a minimum of 6 characters", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         if (phoneNum.length() < 10) {
             Toast.makeText(getApplicationContext(), "Please enter a valid phone number", Toast.LENGTH_LONG).show();
             return;

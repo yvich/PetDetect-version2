@@ -19,22 +19,28 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            android:text="Rooms in Users house"
             android:id="@+id/backTxt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Rooms in Users house"
+            android:textColor="@color/white"
+            android:textSize="20dp">
 
         </TextView>
 
         <ImageView
+            android:id="@+id/logout"
+            android:layout_width="41dp"
+            android:layout_height="52dp"
+            app:srcCompat="@drawable/logout_logo" />
+
+        <ImageView
             android:id="@+id/alertImg"
+            android:layout_width="33dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
-            android:layout_width="30dp"
-            android:layout_height="35dp"
+            android:layout_marginRight="2dp"
             android:background="@drawable/alert_on">
 
         </ImageView>

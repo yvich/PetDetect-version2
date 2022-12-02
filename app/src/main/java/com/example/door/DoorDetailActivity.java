@@ -32,17 +32,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class DoorDetailActivity extends AppCompatActivity implements View.OnClickListener{
     TextView backTxt;
     protected TextView imagetimeTxt;
-    RelativeLayout updateLyt;
-    RelativeLayout deleteLyt;
-    RelativeLayout DownloadLyt;
     ImageView doorImg;
     FirebaseDatabase database;
     DatabaseReference reference;
+    DatabaseReference refDate;
+    DatabaseReference refP;
     String uid;
     String move = "";
+    String image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,36 +56,49 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
         backTxt = findViewById(R.id.backTxt);
         backTxt.setOnClickListener(this);
         imagetimeTxt = findViewById(R.id.imagetimeTxt);
-        updateLyt = findViewById(R.id.updateLyt);
-        updateLyt.setOnClickListener(this);
-        deleteLyt = findViewById(R.id.deleteLyt);
-        deleteLyt.setOnClickListener(this);
-        DownloadLyt = findViewById(R.id.DownloadLyt);
-        DownloadLyt.setOnClickListener(this);
         doorImg = findViewById(R.id.doorImg);
         database = FirebaseDatabase.getInstance();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         reference = database.getReference("UsersData").child(uid).child("a");
+        refDate = database.getReference("UsersData").child(uid).child("date");
+        refP = database.getReference("UsersData").child(uid).child("previous");
+
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.detected_shared_preferences), Context.MODE_PRIVATE);
+        image = sharedPreferences.getString(getString(R.string.detected_shared_preferences), null);
+
         data();
-        ActivityCompat.requestPermissions(DoorDetailActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
-        ActivityCompat.requestPermissions(DoorDetailActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
 
         createNotificationChannel();
-
     }
 
     private void data() {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                imagetimeTxt.setText(snapshot.getValue(String.class));
-                move = snapshot.getValue(String.class);
-                Notification();
+                refP.setValue(snapshot.getValue(String.class));
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 imagetimeTxt.setText("No data is read");
+            }
+        });
+
+        refP.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String strDate = sdf.format(c.getTime());
+                imagetimeTxt.setText(snapshot.getValue(String.class) + " on " + strDate);
+                refDate.setValue(strDate);
+                move = snapshot.getValue(String.class) + " on " + strDate;
+                Notification();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
@@ -123,40 +139,6 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
         if (v == backTxt){
             startActivity(new Intent(DoorDetailActivity.this, Home.class));
             finish();
-        }
-        if (v == deleteLyt){
-            Toast.makeText(getApplicationContext(), "Door deleted", Toast.LENGTH_LONG).show();
-        }
-        if (v == updateLyt){
-            //Notification();
-            Toast.makeText(getApplicationContext(), "Door updated", Toast.LENGTH_LONG).show();
-        }
-        if (v == DownloadLyt){
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) doorImg.getDrawable();
-            Bitmap bitmap = bitmapDrawable.getBitmap();
-            FileOutputStream outputStream = null;
-            File file = Environment.getExternalStorageDirectory();
-            File dir = new File(file.getAbsolutePath() + "/MyPictures");
-            dir.mkdirs();
-            String fileName = String.format("%d.png", System.currentTimeMillis());
-            File outFile = new File(dir,fileName);
-            try{
-                outputStream = new FileOutputStream(outFile);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            bitmap.compress(Bitmap.CompressFormat.PNG,100,outputStream);
-            try{
-                outputStream.flush();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            try{
-                outputStream.close();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            Toast.makeText(getApplicationContext(), "Image downloaded", Toast.LENGTH_LONG).show();
         }
     }
 }

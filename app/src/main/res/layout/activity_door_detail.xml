@@ -5,130 +5,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/maincolor"
-    android:orientation="vertical"
-    tools:context=".DoorDetailActivity">
-
-    <TextView
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="25dp"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        android:text="Back"
-        android:id="@+id/backTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </TextView>
-
-    <ImageView
-        android:id="@+id/doorImg"
-        android:background="@drawable/image1"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="300dp"
-        android:layout_height="300dp">
-
-    </ImageView>
-
-    <TextView
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/white"
-        android:textSize="15dp"
-        android:text="Front Door Enterance"
-        android:id="@+id/doorTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </TextView>
-
-    <TextView
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/white"
-        android:textSize="15dp"
-        android:text="Taken at 8:54 PM, 01/02/2022"
-        android:id="@+id/imagetimeTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </TextView>
 
     <RelativeLayout
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/updateLyt"
-        android:background="@drawable/button_background2"
-        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="900dp"
+        android:background="@color/maincolor"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
 
-        <TextView
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/maincolor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="Update Door">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/maincolor"
+            android:orientation="vertical"
+            tools:context=".DoorDetailActivity">
 
-        </TextView>
+            <TextView
+                android:id="@+id/backTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="50dp"
+                android:text="Back"
+                android:textColor="@color/white"
+                android:textSize="20dp">
 
+            </TextView>
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="298dp"
+                app:srcCompat="@drawable/dog" />
+
+            <TextView
+                android:id="@+id/doorTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="Front Door Entrance"
+                android:textColor="@color/white"
+                android:textSize="15dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/imagetimeTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:text="&quot; &quot;"
+                android:textColor="@color/white"
+                android:textSize="15dp">
+
+            </TextView>
+
+        </LinearLayout>
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/deleteLyt"
-        android:background="@drawable/button_background2"
-        android:layout_marginTop="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/maincolor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="Delete Door">
-
-        </TextView>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/DownloadLyt"
-        android:background="@drawable/button_background2"
-        android:layout_marginTop="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/maincolor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="Download Image">
-
-        </TextView>
-
-    </RelativeLayout>
-
-</LinearLayout>
 </ScrollView>

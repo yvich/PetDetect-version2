@@ -9,6 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class InputActivity2 extends AppCompatActivity implements View.OnClickListener{
 
@@ -20,7 +25,6 @@ public class InputActivity2 extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input2);
-
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
@@ -29,22 +33,21 @@ public class InputActivity2 extends AppCompatActivity implements View.OnClickLis
         nextLyt.setOnClickListener(this);
 
         numEdt = findViewById(R.id.numEdt);
-
-       SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.Door_SharedPreferences), Context.MODE_PRIVATE);
-       String door = sharedPreferences.getString(getString(R.string.Door_SharedPreferences_Name_Key),null);
-
-
     }
 
     @Override
     public void onClick(View v) {
 
         if (v == nextLyt){
-            Intent intent = new Intent(InputActivity2.this, Home.class);
-            st = numEdt.getText().toString();
-            intent.putExtra("Value",st);
-            startActivity(intent);
-            finish();
+            if (numEdt.getText().toString().isEmpty()) {
+                Toast.makeText(this, "Please fill no. of door", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                DatabaseReference database = FirebaseDatabase.getInstance().getReference("UsersData").child(FirebaseAuth.getInstance().getUid());
+                database.child("Doors").setValue(numEdt.getText().toString());
+                startActivity(new Intent(InputActivity2.this, Home.class));
+                finish();
+            }
         }
     }
 }
