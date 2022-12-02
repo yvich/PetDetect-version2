@@ -38,7 +38,6 @@ import java.util.Calendar;
 public class DoorDetailActivity extends AppCompatActivity implements View.OnClickListener{
     TextView backTxt;
     protected TextView imagetimeTxt;
-    ImageView doorImg;
     FirebaseDatabase database;
     DatabaseReference reference;
     DatabaseReference refDate;
@@ -56,7 +55,6 @@ public class DoorDetailActivity extends AppCompatActivity implements View.OnClic
         backTxt = findViewById(R.id.backTxt);
         backTxt.setOnClickListener(this);
         imagetimeTxt = findViewById(R.id.imagetimeTxt);
-        doorImg = findViewById(R.id.doorImg);
         database = FirebaseDatabase.getInstance();
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         reference = database.getReference("UsersData").child(uid).child("a");
